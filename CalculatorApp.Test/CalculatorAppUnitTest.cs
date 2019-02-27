@@ -274,5 +274,27 @@ namespace CalculatorApp.Test
             string input = "Hello World";
             _calculator.Evaluate(input);
         }
+
+        [TestMethod]
+        public void PowerInput()
+        {
+            string input = "2^4";
+            double? expectedResult = 16;
+
+            double? actualResult  = _calculator.Evaluate(input);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }        
+        
+        [TestMethod]
+        public void EuclideanDivisionInput()
+        {
+            string input = "7%2";
+            double? expectedResult = 1;
+
+            double? actualResult  = _calculator.Evaluate(input);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
     }
 }

@@ -18,6 +18,8 @@ namespace CalculatorApp
                 new ResolvedOperation(){OperatorStr = "*", OperatorStrToRegex = "/*",Priority = 2, Operation = (first, second) => first * second },
                 new ResolvedOperation(){OperatorStr = "/", OperatorStrToRegex = "//",Priority = 2, Operation = (first, second) => second == 0D ? throw new DivideByZeroException() : (double?) (first / second)
                 },
+                new ResolvedOperation(){OperatorStr = "^", OperatorStrToRegex = "/^",Priority = 2, Operation = (first, second) => Math.Pow(first, second) },
+                new ResolvedOperation(){OperatorStr = "%", OperatorStrToRegex = "/%",Priority = 2, Operation = (first, second) => first%second }
             };
 
             BracketsPair = new ResolvedBracketsPair()
