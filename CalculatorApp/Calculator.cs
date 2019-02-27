@@ -13,10 +13,10 @@ namespace CalculatorApp
 {
     public class Calculator
     {
-        public IInputValidate InputValidate { get; set; }
-        public IInputSeparate InputSeparate { get; set; }
-        public IInputConverterToReversPolishNotation InputConverterToReversPolishNotation { get; set; }
-        public readonly ResolvedOperations ResolvedOperations;
+        private IInputValidate InputValidate { get; set; }
+        private IInputSeparate InputSeparate { get; set; }
+        private IInputConverterToReversPolishNotation InputConverterToReversPolishNotation { get; set; }
+        private readonly ResolvedOperations _resolvedOperations;
         private ICollection<string> DecimalDelimiters { get; set; }
 
         public Calculator()
@@ -24,7 +24,7 @@ namespace CalculatorApp
             InputValidate = new InputValidate();
             InputSeparate = new InputSeparate();
             InputConverterToReversPolishNotation = new ConverterToReversPolishNotation();
-            ResolvedOperations = new ResolvedOperations();
+            _resolvedOperations = new ResolvedOperations();
 
             DecimalDelimiters = new List<string>() {",", "."};
         }
@@ -35,7 +35,7 @@ namespace CalculatorApp
         {
             InputValidate = inputValidate;
             InputSeparate = inputSeparate;
-            ResolvedOperations = resolvedOperations;
+            _resolvedOperations = resolvedOperations;
             InputConverterToReversPolishNotation = inputConverterToReversPolishNotation;
             DecimalDelimiters = new List<string>() {",", "."};
         }
@@ -47,12 +47,12 @@ namespace CalculatorApp
                 if (!InputValidate.IsValid(statement))
                     throw new ArgumentException();
 
-                List<string> separatedInput = InputSeparate.SeparateString(statement, ResolvedOperations).ToList();
+                List<string> separatedInput = InputSeparate.SeparateString(statement, _resolvedOperations).ToList();
                 if (separatedInput.Count == 0)
                     throw new SeparateException();
 
                 List<string> notationstring = InputConverterToReversPolishNotation
-                    .Convert(separatedInput, ResolvedOperations).ToList();
+                    .Convert(separatedInput, _resolvedOperations).ToList();
                 if (notationstring.Count == 0)
                     throw new ConvertException();
 
@@ -67,7 +67,7 @@ namespace CalculatorApp
         private double? Compute(ICollection<string> reversPolishNotation)
         {
             var stack = new Stack<string>();
-            var strOperation = ResolvedOperations.Operations.Select(x => x.OperatorStr).ToList();
+            var strOperation = _resolvedOperations.Operations.Select(x => x.OperatorStr).ToList();
             foreach (var statement in reversPolishNotation)
             {
                 if (strOperation.Contains(statement))
@@ -75,7 +75,7 @@ namespace CalculatorApp
                     if (!(double.TryParse(stack.Pop(), out var second) && double.TryParse(stack.Pop(), out var first)))
                         throw new FormatException();
 
-                    var operation = ResolvedOperations.Operations.FirstOrDefault(x => x.OperatorStr == statement)?.Operation;
+                    var operation = _resolvedOperations.Operations.FirstOrDefault(x => x.OperatorStr == statement)?.Operation;
                     if (operation != null)
                         stack.Push(operation(first, second)?.ToString(CultureInfo.InvariantCulture));
                     else throw new MissingOperationException();
