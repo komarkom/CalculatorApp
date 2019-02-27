@@ -1,0 +1,29 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+.vs
+packages
+bin
+obj
+*.user
+/Sources/Trives/TrivesApi
+/Sources/Scales
+/Sources/Trives/TrivesWebApp/node_modules
+node_modules
+/Sources/Trives/npm-debug.log
+/Sources/Trives/TrivesWebApp/wwwroot/js/main*.js
+/Sources/Trives/TrivesWebApp/wwwroot/js/main*.js.map
+/Sources/Trives/TrivesWebApp/wwwroot/js/main*.js.gz
+/Sources/Trives/TrivesWebApp/Publish
+/Sources/Trives/TrivesWebApp/PublishFolder
+/Sources/Trives/TrivesWebApp/UploadFolder
+/Sources/Trives/TrivesWebApp/version.json
+/Sources/Trives/TrivesWebApp/stats.json
+/Sources/Trives/publish
+/Hardware/Scanner/Samples
+*.tmp
+/Documents/Отчетная Документация/~$.82209942.16-174.И3.01.Сканер-РуководствоПользователя.docx
+/Sources/Trives/TrivesWebApp/wwwroot/GcodeGenerator
+*.diagsession
+/Hardware/CNC
