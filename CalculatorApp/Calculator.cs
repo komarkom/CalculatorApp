@@ -19,16 +19,6 @@ namespace CalculatorApp
         private readonly ResolvedOperations _resolvedOperations;
         private ICollection<string> DecimalDelimiters { get; set; }
 
-        public Calculator()
-        {
-            InputValidate = new InputValidate();
-            InputSeparate = new InputSeparate();
-            InputConverterToReversPolishNotation = new ConverterToReversPolishNotation();
-            _resolvedOperations = new ResolvedOperations();
-
-            DecimalDelimiters = new List<string>() {",", "."};
-        }
-
         public Calculator(IInputValidate inputValidate, IInputSeparate inputSeparate,
             IInputConverterToReversPolishNotation inputConverterToReversPolishNotation,
             ResolvedOperations resolvedOperations)

@@ -22,8 +22,13 @@ namespace CalculatorApp.Implementation
             while (pos < input.Count)
             {
                 string s = input.ElementAt(pos);
+                if (operationsSymbols.Contains(s) && (pos == 0 || (pos > 0 && input.ElementAt(pos - 1).Equals(brackets.OpenBracket.OperatorStr))))
+                {
+                    res.Add("0");
+                }
                 if (operationsSymbols.Contains(s) && pos > 0 && operationsSymbols.Contains(input.ElementAt(pos - 1)))
                     throw new IncorrentInputStatement();
+
                 if (allResolvedSymbol.Contains(s))
                 {
                     if (s.Equals(brackets.CloseBracket.OperatorStr))

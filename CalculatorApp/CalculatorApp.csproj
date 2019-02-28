@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator.cs" />
+    <Compile Include="DefaultCalculator.cs" />
     <Compile Include="Implementation\ConverterToReversPolishNotation.cs" />
     <Compile Include="Exception\MissingOperationException.cs" />
     <Compile Include="Exception\SeparateException.cs" />

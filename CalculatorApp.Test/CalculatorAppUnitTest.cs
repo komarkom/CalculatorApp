@@ -8,7 +8,7 @@ namespace CalculatorApp.Test
     [TestClass]
     public class CalculatorAppUnitTest
     {
-        private readonly Calculator _calculator = new Calculator();
+        private readonly Calculator _calculator = new DefaultCalculator();
 
         [TestMethod]
         public void SingleSum()
@@ -71,6 +71,17 @@ namespace CalculatorApp.Test
         {
             string input = "-12+3";
             double? expectedResult = -9;
+
+            double? actualResult  = _calculator.Evaluate(input);
+
+            Assert.AreEqual(expectedResult, actualResult);
+        }
+
+        [TestMethod]
+        public void MinusAfterBrackets()
+        {
+            string input = "1+(-12+3)";
+            double? expectedResult = -8;
 
             double? actualResult  = _calculator.Evaluate(input);
 

@@ -23,8 +23,8 @@ namespace CalculatorApp.Implementation
             int pos = 0;
             int openCount = 0, closeCount = 0;
 
-            if (operatorsSymbol.Contains(input[pos].ToString()))
-                input = "0" + input;
+//            if (operatorsSymbol.Contains(input[pos].ToString()))
+//                input = "0" + input;
             while (pos < input.Length)
             {
                 string s = "" + input[pos];

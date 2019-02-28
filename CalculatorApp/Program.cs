@@ -10,7 +10,7 @@ namespace CalculatorApp
     {
         static void Main(string[] args)
         {
-            var calc = new Calculator();
+            var calc = new DefaultCalculator();
             if (args.Length == 1)
             {
                 try
